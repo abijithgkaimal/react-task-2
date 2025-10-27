@@ -3,7 +3,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 function Transaction() {
   // State for the list of transactions
   const [transactions, setTransactions] = useState([]);
-  
+
   // State for form inputs
   const [description, setDescription] = useState('');
   const [amount, setAmount] = useState('');
@@ -20,8 +20,8 @@ function Transaction() {
 
   // Get the logged-in user's email
   const loggedInUserEmail = localStorage.getItem('loggedInUserEmail');
-// Transaction.jsx (near top)
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001/transactions';
+  // Transaction.jsx (near top)
+  const API_URL = 'https://68fef73be02b16d1753bfa69.mockapi.io/transactions';
 
   // Fetch transactions from the db.json server
   const fetchTransactions = useCallback(async () => {
@@ -93,7 +93,7 @@ const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001/transact
     setAmount('');
     setType('income');
   };
-  
+
   const handleDeleteTransaction = async (id) => {
     await fetch(`${API_URL}/${id}`, {
       method: 'DELETE',
@@ -101,7 +101,7 @@ const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001/transact
     // Refresh transactions from server
     fetchTransactions();
   };
-  
+
   const handleEditClick = (transaction) => {
     setIsEditing(true);
     setCurrentTransactionId(transaction.id);
@@ -109,7 +109,7 @@ const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001/transact
     setAmount(transaction.amount);
     setType(transaction.type);
   };
-  
+
   const handleCancelEdit = () => {
     setIsEditing(false);
     setCurrentTransactionId(null);
@@ -120,16 +120,16 @@ const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001/transact
 
   if (!loggedInUserEmail) {
     return (
-        <div className="container text-center mt-5">
-            <h2>Please log in to view your transactions.</h2>
-        </div>
+      <div className="container text-center mt-5">
+        <h2>Please log in to view your transactions.</h2>
+      </div>
     )
   }
 
   return (
     <div className="container my-5">
       <h2 className="text-center mb-4">Your Transactions</h2>
-      
+
       {/* Summary Cards */}
       <div className="row justify-content-center text-center mb-4">
         <div className="col-md-4">
@@ -157,7 +157,7 @@ const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001/transact
           </div>
         </div>
       </div>
-      
+
       {/* Add/Edit Transaction Form */}
       <div className="card p-4 mb-5 shadow-sm">
         <h3 className="text-center">{isEditing ? 'Edit Transaction' : 'Add New Transaction'}</h3>
@@ -220,9 +220,8 @@ const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001/transact
             transactions.slice(0).reverse().map((transaction) => (
               <li
                 key={transaction.id}
-                className={`list-group-item d-flex justify-content-between align-items-center ${
-                  transaction.type === 'income' ? 'border-success' : 'border-danger'
-                }`}
+                className={`list-group-item d-flex justify-content-between align-items-center ${transaction.type === 'income' ? 'border-success' : 'border-danger'
+                  }`}
               >
                 {transaction.description}
                 <div>
