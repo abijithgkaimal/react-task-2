@@ -20,7 +20,8 @@ function Transaction() {
 
   // Get the logged-in user's email
   const loggedInUserEmail = localStorage.getItem('loggedInUserEmail');
-  const API_URL = 'http://localhost:5001/transactions';
+// Transaction.jsx (near top)
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001/transactions';
 
   // Fetch transactions from the db.json server
   const fetchTransactions = useCallback(async () => {
