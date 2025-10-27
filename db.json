@@ -1,0 +1,25 @@
+{
+  "transactions": [
+    {
+      "id": "a13f",
+      "description": "hi",
+      "amount": 234,
+      "type": "income",
+      "userEmail": "asdfg@gmail.com"
+    },
+    {
+      "id": "817f",
+      "description": "salary",
+      "amount": 50000,
+      "type": "income",
+      "userEmail": "asdfg@gmail.com"
+    },
+    {
+      "id": "a604",
+      "description": "car rent",
+      "amount": 7000,
+      "type": "expense",
+      "userEmail": "asdfg@gmail.com"
+    }
+  ]
+}
